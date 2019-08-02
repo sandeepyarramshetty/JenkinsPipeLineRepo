@@ -1,0 +1,14 @@
+ode {
+    stage ("SCM"){
+        git 'https://github.com/sandeepyarramshetty/spring-petclinic.git'
+    }
+    stage ("Build the package"){
+        sh label: '', script: 'mvn package'
+    }
+    stage ("archival"){
+        archiveArtifacts 'target/*.jar'
+    }
+    stage ("Test results"){
+        junit 'target/surefire-reports/*.xml'
+    }
+}

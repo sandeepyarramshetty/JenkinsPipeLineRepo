@@ -1,0 +1,14 @@
+node {
+    stage ("SCM"){
+        git 'https://github.com/openmrs/openmrs-core.git'
+    }
+    stage ("Build the package"){
+        sh label: '', script: 'mvn package'
+    }
+    stage ("archival"){
+        archiveArtifacts 'target/*.jar'
+    }
+    //stage ("Test results"){
+      //  junit 'target/surefire-reports/*.xml'
+    //}
+}
