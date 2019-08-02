@@ -5,10 +5,11 @@ ode {
     stage ("Build the package"){
         sh label: '', script: 'mvn package'
     }
-    stage ("archival"){
-        archiveArtifacts 'target/*.jar'
-    }
     stage ("Test results"){
         junit 'target/surefire-reports/*.xml'
     }
+    stage ("archival"){
+        archiveArtifacts 'target/*.jar'
+    }
+
 }
